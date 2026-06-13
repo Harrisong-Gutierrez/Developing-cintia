@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className="antialiased bg-slate-50 text-slate-900">
+      <body className="antialiased bg-slate-900 text-slate-900">
         {children}
         
         {/* Contenedor único donde se renderizan las alertas */}

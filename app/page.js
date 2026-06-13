@@ -77,8 +77,7 @@ export default function Home() {
         {/* Encabezado */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-6 rounded-2xl border border-slate-200 shadow-xs gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Inventario de la Tienda v2</h1>
-            <p className="text-xs md:text-sm text-slate-500 font-medium mt-0.5">Vista maximizada en tiempo real con modales fluidos</p>
+            <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Inventario de la Tienda Cintia Celleni</h1>
           </div>
           <button
             onClick={() => {

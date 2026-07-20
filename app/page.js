@@ -20,7 +20,7 @@ export default function Home() {
     try {
       const { data, error } = await supabase
         .from('productos')
-        .select('*')
+        .select('*, categorias(nombre)') // <-- Trae el producto y su categoría asociada de un solo golpe
         .order('created_at', { ascending: false })
       if (error) throw error
       setProductos(data || [])
@@ -57,7 +57,7 @@ export default function Home() {
       .subscribe()
 
     return () => {
-      supabase.removeChannel(canalRealtime)
+      canalRealtime.unsubscribe() // <-- Desuscripción limpia recomendada por Supabase
     }
   }, [])
 
@@ -71,7 +71,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 p-4 sm:p-6 md:p-10">
+    <main className="min-h-screen bg-pink-100 p-4 sm:p-6 md:p-10">
       <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
         
         {/* Encabezado */}
@@ -87,7 +87,7 @@ export default function Home() {
             }}
             className="px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center gap-2 self-stretch sm:self-auto justify-center active:scale-95"
           >
-            <svg xmlns="http://www.w3.org/2000/xl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
             Agregar Artículo
           </button>
         </div>
@@ -112,7 +112,7 @@ export default function Home() {
                   setIsModalOpen(true)
                 }}
                 onDelete={handleEliminarProducto}
-                onOpenImage={abrirVisorImagen} // <-- Pasamos la función al Card
+                onOpenImage={abrirVisorImagen}
               />
             ))}
           </div>

@@ -1,27 +1,9 @@
 // components/ProductCard.js
 'use client'
-import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
 
 export default function ProductCard({ producto, onEdit, onDelete, onOpenImage }) {
-  const [nombreCategoria, setNombreCategoria] = useState('')
-
-  useEffect(() => {
-    const buscarCategoria = async () => {
-      if (producto.categoria_id) {
-        const { data } = await supabase
-          .from('categorias')
-          .select('nombre')
-          .eq('id', producto.categoria_id)
-          .single()
-        if (data) setNombreCategoria(data.nombre)
-      } else {
-        setNombreCategoria('Sin Categoría')
-      }
-    }
-    buscarCategoria()
-  }, [producto.categoria_id])
-
+  // Obtenemos el nombre directamente de la relación mapeada en la consulta global de la página
+  const nombreCategoria = producto.categorias?.nombre || 'Sin Categoría'
   const estaAgotado = producto.cantidad <= 0
 
   return (
@@ -30,7 +12,7 @@ export default function ProductCard({ producto, onEdit, onDelete, onOpenImage })
       {/* Contenedor Imagen - Ultra Moderno */}
       <div 
         onClick={() => producto.imagen_url && onOpenImage(producto.imagen_url, producto.articulo)}
-        className={`h-52 w-full bg-gradient-to-br from-slate-50 to-slate-100/50 relative flex items-center justify-center overflow-hidden select-none ${producto.imagen_url ? 'cursor-zoom-in' : ''}`}
+        className={`h-90 w-full bg-gradient-to-br from-slate-50 to-slate-100/50 relative flex items-center justify-center overflow-hidden select-none ${producto.imagen_url ? 'cursor-zoom-in' : ''}`}
         title={producto.imagen_url ? "Click para ampliar imagen" : "Sin fotografía"}
       >
         {producto.imagen_url ? (

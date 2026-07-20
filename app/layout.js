@@ -4,14 +4,14 @@ import 'react-toastify/dist/ReactToastify.css' // <-- ESTILOS OBLIGATORIOS
 import './globals.css'
 
 export const metadata = {
-  title: 'Inventario de la Tienda v2',
+  title: 'Inventario de Productos Celeni',
   description: 'Gestión profesional de stock en tiempo real',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className="antialiased bg-slate-900 text-slate-900">
+      <body className="antialiased bg-pink-300 text-slate-900">
         {children}
         
         {/* Contenedor único donde se renderizan las alertas */}

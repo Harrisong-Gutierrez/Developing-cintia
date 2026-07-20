@@ -12,7 +12,7 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
   const [precioTiendaNio, setPrecioTiendaNio] = useState('')
   const [imagenUrl, setImagenUrl] = useState('')
   const [subiendoImagen, setSubiendoImagen] = useState(false)
-  
+
   const [categoriaTexto, setCategoriaTexto] = useState('')
   const [listaCategorias, setListaCategorias] = useState([])
   const [sugerencias, setSugerencias] = useState([])
@@ -34,7 +34,7 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
       setPrecioTiendaUsd(productoEditando.precio_tienda_usd || '')
       setPrecioTiendaNio(productoEditando.precio_tienda_nio || '')
       setImagenUrl(productoEditando.imagen_url || '')
-      
+
       if (productoEditando.categoria_id) {
         const cat = listaCategorias.find(c => c.id === productoEditando.categoria_id)
         setCategoriaTexto(cat ? cat.nombre : '')
@@ -63,7 +63,7 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
     if (valor.trim() === '') {
       setSugerencias([])
     } else {
-      const filtradas = listaCategorias.filter(cat => 
+      const filtradas = listaCategorias.filter(cat =>
         cat.nombre.toLowerCase().includes(valor.toLowerCase())
       )
       setSugerencias(filtradas)
@@ -126,13 +126,14 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
         }
       }
 
+      // Cambia la forma en que extraes la cantidad para evitar NaN
       const datosProducto = {
         articulo,
-        cantidad: parseInt(cantidad),
-        precio_costo_usd: precioCosto ? parseFloat(precioCosto) : null,
-        precio_tienda_usd: precioTiendaUsd ? parseFloat(precioTiendaUsd) : null,
-        precio_tienda_nio: precioTiendaNio ? parseFloat(precioTiendaNio) : null,
-        imagen_url: imagenUrl || null, // Si está vacío se guarda explícitamente como NULL
+        cantidad: cantidad === '' ? 0 : parseInt(cantidad, 10), // Evita fallos si borran el input
+        precio_costo_usd: precioCosto !== '' ? parseFloat(precioCosto) : null,
+        precio_tienda_usd: precioTiendaUsd !== '' ? parseFloat(precioTiendaUsd) : null,
+        precio_tienda_nio: precioTiendaNio !== '' ? parseFloat(precioTiendaNio) : null,
+        imagen_url: imagenUrl || null,
         categoria_id: catId
       }
 
@@ -163,7 +164,7 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
             {productoEditando ? '✏️ Editar Artículo' : '📦 Nuevo Artículo'}
           </h2>
           <button onClick={onCancel} className="text-slate-400 hover:text-slate-600 cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" x2="6" y1="6" y2="18" /><line x1="6" x2="18" y1="6" y2="18" /></svg>
           </button>
         </div>
 
@@ -263,14 +264,14 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
               onChange={handleImageUpload}
               className="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer"
             />
-            
+
             {/* Contenedor de la miniatura con botón de eliminación Nivel Dios */}
             {imagenUrl && (
               <div className="relative mt-3 w-20 h-20 group/img">
-                <img 
-                  src={imagenUrl} 
-                  alt="Preview" 
-                  className="w-full h-full object-cover rounded-xl border border-slate-200 shadow-xs" 
+                <img
+                  src={imagenUrl}
+                  alt="Preview"
+                  className="w-full h-full object-cover rounded-xl border border-slate-200 shadow-xs"
                 />
                 <button
                   type="button"
@@ -278,7 +279,7 @@ export default function ProductForm({ isOpen, productoEditando, onSave, onCancel
                   className="absolute -top-1.5 -right-1.5 p-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg shadow-md transition-transform active:scale-90 cursor-pointer"
                   title="Quitar imagen"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /></svg>
                 </button>
               </div>
             )}

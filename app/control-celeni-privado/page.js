@@ -97,7 +97,7 @@ export default function AdminPage() {
             <input
               type="password"
               placeholder="Contraseña"
-              className="w-full px-4 py-3 text-slate-800 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:outline-none text-sm text-center font-bold tracking-widest"
+              className="w-full px-4 py-3 text-slate-800 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:outline-none text-base text-center font-bold tracking-widest"
               value={passwordInput}
               onChange={(e) => setPasswordInput(e.target.value)}
             />

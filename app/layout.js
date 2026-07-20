@@ -8,6 +8,12 @@ export const metadata = {
   description: 'Gestión profesional de stock en tiempo real',
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1, // Evita que el navegador fuerce el zoom en los inputs
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es">

@@ -88,10 +88,10 @@ export default function ProductCardReadOnly({ producto, onOpenImage }) {
                     ) : (
                         <a
                             href={`https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(
-                                `-¡Hola! Me interesa este producto:\n\n` +
-                                `-Articulo: ${producto.articulo}\n` +
-                                `-ID: #${producto.id.slice(-6).toUpperCase()}\n` +
-                                `-Precio: $${producto.precio_tienda_usd || '0.00'} USD\n` +
+                                `- ¡Hola! Me interesa este producto:\n\n` +
+                                `- Articulo: ${producto.articulo}\n` +
+                                `- ID: #${producto.id.slice(-6).toUpperCase()}\n` +
+                                `- Precio: $${producto.precio_tienda_usd || '0.00'} USD\n` +
                                 `${producto.imagen_url ? `- Foto del producto: ${producto.imagen_url}` : ''}\n\n` +
                                 `¿Está disponible?`
                             )}`}

@@ -6,7 +6,7 @@ export default function ProductCardReadOnly({ producto, onOpenImage }) {
     const estaAgotado = producto.cantidad <= 0
 
     // 🚨 REEMPLAZA ESTO: Pon tu número de Nicaragua (sin el signo +, solo el 505 seguido de tu número)
-    const TELEFONO_WHATSAPP = '50575342731' 
+    const TELEFONO_WHATSAPP = '15614254509' 
 
     return (
         <div className="group relative bg-white rounded-3xl border border-slate-100/80 flex flex-col h-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:shadow-[0_22px_50px_rgba(15,23,42,0.08)] hover:-translate-y-1.5 overflow-hidden">

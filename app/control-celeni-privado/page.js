@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import ProductForm from '@/components/ProductForm'
 import ProductCard from '@/components/ProductCard'
 import ImageModal from '@/components/ImageModal'
+import MarqueeTitle from '@/components/MarqueeTitle'
 
 export default function AdminPage() {
   const [productos, setProductos] = useState([])
@@ -169,13 +170,14 @@ export default function AdminPage() {
                   {/* Lado izquierdo: barra + título */}
                   <div className="flex items-center gap-3 md:gap-4 relative z-10 min-w-0">
                     <span className="w-1.5 h-11 md:h-12 rounded-full bg-gradient-to-b from-pink-500 via-rose-500 to-rose-600 shadow-[0_0_18px_rgba(244,63,94,0.55)] shrink-0" />
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <p className="text-[10px] font-black uppercase tracking-[0.25em] text-rose-500 mb-0.5">
                         Colección
                       </p>
-                      <h2 className="text-2xl md:text-3xl font-black tracking-tight leading-none bg-gradient-to-br from-slate-900 via-slate-800 to-slate-600 bg-clip-text text-transparent truncate">
-                        {categoria}
-                      </h2>
+                      <MarqueeTitle
+                        text={categoria}
+                        className="text-2xl md:text-3xl font-black tracking-tight leading-none bg-gradient-to-br from-slate-900 via-slate-800 to-slate-600 bg-clip-text text-transparent"
+                      />
                     </div>
                   </div>
 

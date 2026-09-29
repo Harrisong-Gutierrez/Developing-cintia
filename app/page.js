@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import ProductCardReadOnly from '@/components/ProductCardReadOnly'
 import ImageModal from '@/components/ImageModal'
+import MarqueeTitle from '@/components/MarqueeTitle'
 
 export default function HomePublica() {
   const [productos, setProductos] = useState([])
@@ -95,16 +96,15 @@ export default function HomePublica() {
                     {/* Barra vertical con glow */}
                     <span className="w-1.5 h-11 md:h-12 rounded-full bg-gradient-to-b from-pink-500 via-rose-500 to-rose-600 shadow-[0_0_18px_rgba(244,63,94,0.55)] shrink-0" />
 
-                    <div className="min-w-0">
-                      {/* Micro-etiqueta superior */}
-                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-rose-500 mb-0.5">
-                        Colección
-                      </p>
-                      {/* Título con gradient text */}
-                      <h2 className="text-2xl md:text-3xl font-black tracking-tight leading-none bg-gradient-to-br from-slate-900 via-slate-800 to-slate-600 bg-clip-text text-transparent truncate">
-                        {categoria}
-                      </h2>
-                    </div>
+                    <div className="min-w-0 flex-1">
+                        <p className="text-[10px] font-black uppercase tracking-[0.25em] text-rose-500 mb-0.5">
+                          Colección
+                        </p>
+                        <MarqueeTitle
+                          text={categoria}
+                          className="text-2xl md:text-3xl font-black tracking-tight leading-none bg-gradient-to-br from-slate-900 via-slate-800 to-slate-600 bg-clip-text text-transparent"
+                        />
+                      </div>
                   </div>
 
                   {/* Lado derecho: contador tipo badge oscuro */}
